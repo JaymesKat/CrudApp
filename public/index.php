@@ -1,16 +1,20 @@
 <?php
 declare(strict_types=1);
 
+use DI\ContainerBuilder;
+use CrudApp\HelloWorld;
+use function DI\create;
+
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-$containerBuilder = new \DI\ContainerBuilder();
+$containerBuilder = new ContainerBuilder();
 $containerBuilder->useAutowiring(false);
 $containerBuilder->useAnnotations(false);
 $containerBuilder->addDefinitions([
-    \CrudApp\HelloWorld::class => \DI\create(\CrudApp\HelloWorld::class)
+    HelloWorld::class => create(HelloWorld::class)
 ]);
 
 $container = $containerBuilder->build();
 
-$helloWorld = $container->get(\CrudApp\HelloWorld::class);
+$helloWorld = $container->get(HelloWorld::class);
 $helloWorld->announce();

@@ -1,0 +1,12 @@
+{
+    "name": "jameskatarikawe/CrudApp",
+    "description": "A minimalist modern PHP application without a framework",
+    "type": "project",
+    "license": "MIT",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "CrudApp\\": "src/"
+        }
+    }
+}

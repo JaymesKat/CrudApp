@@ -3,5 +3,14 @@ declare(strict_types=1);
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-$helloWorld = new \CrudApp\HelloWorld();
+$containerBuilder = new \DI\ContainerBuilder();
+$containerBuilder->useAutowiring(false);
+$containerBuilder->useAnnotations(false);
+$containerBuilder->addDefinitions([
+    \CrudApp\HelloWorld::class => \DI\create(\CrudApp\HelloWorld::class)
+]);
+
+$container = $containerBuilder->build();
+
+$helloWorld = $container->get(\CrudApp\HelloWorld::class);
 $helloWorld->announce();
